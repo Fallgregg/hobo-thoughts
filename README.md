@@ -10,7 +10,7 @@ It's an app similar to Twitter. The same or even a tod extended functionality as
 3. Easy and quickly find posts with our search by tags
 4. Join HoboThoughts in one moment with Google or email registration
 5. Leave your best jokes under posts with comments section
-6. Like or get liked
+6. Like and get liked
 
 
 ## Technologies Used
