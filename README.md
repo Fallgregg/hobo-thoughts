@@ -1,7 +1,7 @@
 # HoboThoughts Social Network
 ## What is HoboThoughts?
 
-It's an app similar to Twitter. The same or even a tod extended functionality as in modern social networks one. Minimalistic design, nice color theme and some useful features created with love by our amazing developers :)
+It's an app similar to Twitter. The same or even a tad extended functionality as in modern social networks one. Minimalistic design, nice color theme and some useful features created with love by our amazing developers :)
 
 ## Our Functionality
 
