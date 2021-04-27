@@ -25,15 +25,13 @@ import avatar2 from "./avatars/testPic2.jpg";
 import avatar3 from "./avatars/testPic3.jpg";
 
 const useStyles = makeStyles((theme) => ({
-  header: {
-    // padding: "4px 0",
-    // backgroundColor: "black",
+  // header: {
+  //   padding: "4px 0",
+  //   backgroundColor: "black",
 
-    // display: "flex",
-    // flexDirection: "row",
-    padding: "4px 0",
-    backgroundColor: "black",
-  },
+  //   display: "flex",
+  //   flexDirection: "row",
+  // },
   // toolbar: {
   //   width: "100%",
   //   justifyContent: "flex-end",
@@ -45,6 +43,15 @@ const useStyles = makeStyles((theme) => ({
   //   fontWeight: 700,
   //   size: "18px",
   // },
+  header: {
+    // padding: "4px 0",
+    // backgroundColor: "black",
+
+    // display: "flex",
+    // flexDirection: "row",
+    padding: "4px 0",
+    backgroundColor: "black",
+  },
   toolbar: {
     display: "flex",
     flexDirection: "column",
@@ -61,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     size: "18px",
   },
+
   feed: {
     fontWeight: 700,
     size: "18px",
@@ -238,30 +246,6 @@ function HomeReg() {
   ];
   return (
     <>
-      {/* <AppBar className={classes.header} position="static">
-        <Toolbar className={classes.toolbar}>
-          <Typography variant="h6" className={classes.logo}>
-            hobo-thoughts
-          </Typography>
-          <Button
-            className={classes.menuButton}
-            color="inherit"
-            //   key: label,
-            //   to: href,
-            //   component: RouterLink,
-          >
-            {" "}
-            Home
-          </Button>
-          <Button className={classes.menuButton} color="inherit">
-            New thought
-          </Button>
-          <Button className={classes.menuButton} color="inherit">
-            Profile
-          </Button>
-        </Toolbar>
-      </AppBar>       */}
-
       <AppBar className={classes.header} position="static">
         <Toolbar className={classes.toolbar}>
           <div className={classes.menu}>
@@ -289,9 +273,15 @@ function HomeReg() {
           </Typography>
         </Toolbar>
       </AppBar>
+
       <div className={classes.content}>
         <Grid container justify="center" spacing={4}>
           <Grid item xs={8}>
+            <div disableRipple className={classes.feed}>
+              <Button color="inherit">Your feed</Button>|
+              <Button color="inherit">Genral feed</Button>
+              <Divider />
+            </div>
             <PostList>
               {posts.map((post, index) => {
                 const { user, post: postData } = post;
@@ -300,6 +290,7 @@ function HomeReg() {
               })}
             </PostList>
           </Grid>
+
           <Grid item xs={4} className={classes.tags}>
             <Autocomplete
               multiple
