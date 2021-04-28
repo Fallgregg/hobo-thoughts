@@ -1,34 +1,11 @@
 import React from "react";
-import {
-  AppBar,
-  Button,
-  makeStyles,
-  Toolbar,
-  Typography,
-  TextField,
-} from "@material-ui/core";
+import { Button, makeStyles, TextField } from "@material-ui/core";
+import Header from "../header/Header";
 
 const useStyles = makeStyles((theme) => ({
-  header: {
-    padding: "4px 0",
-    backgroundColor: "black",
-    display: "flex",
-    flexDirection: "row",
-  },
-  toolbar: {
-    width: "100%",
-    justifyContent: "flex-end",
-  },
-  logo: {
-    marginRight: "auto",
-  },
-  menuButton: {
-    fontWeight: 700,
-    size: "18px",
-  },
   title: {
     display: "flex",
-    marginTop: "150px",
+    marginTop: "100px",
     margin: "auto",
     width: "500px",
   },
@@ -53,25 +30,14 @@ const useStyles = makeStyles((theme) => ({
 
 function NewPost() {
   const classes = useStyles();
+  const Headerpages = [
+    { title: "Home", link: "/home" },
+    { title: "New thought", link: "/create-post" },
+    { title: "Profile", link: "/profile" },
+  ];
   return (
     <>
-      <AppBar className={classes.header} position="static">
-        <Toolbar className={classes.toolbar}>
-          <Typography variant="h6" className={classes.logo}>
-            hobo-thoughts
-          </Typography>
-          <Button className={classes.menuButton} color="inherit">
-            Home
-          </Button>
-          <Button className={classes.menuButton} color="inherit">
-            New thought
-          </Button>
-          <Button className={classes.menuButton} color="inherit">
-            Profile
-          </Button>
-        </Toolbar>
-      </AppBar>
-
+      <Header pages={Headerpages} />
       <TextField
         className={classes.title}
         id="titile"

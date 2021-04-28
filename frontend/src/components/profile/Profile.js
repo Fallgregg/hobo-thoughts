@@ -1,9 +1,7 @@
 import React from "react";
 import {
-  AppBar,
   Button,
   makeStyles,
-  Toolbar,
   Typography,
   Grid,
   List,
@@ -18,25 +16,9 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { Pagination, PaginationItem } from "@material-ui/lab/";
 import "../home/Home.css";
 import avatar from "../home/avatars/testPic2.jpg";
+import Header from "../header/Header";
 
 const useStyles = makeStyles((theme) => ({
-  header: {
-    padding: "4px 0",
-    backgroundColor: "black",
-    display: "flex",
-    flexDirection: "row",
-  },
-  toolbar: {
-    width: "100%",
-    justifyContent: "flex-end",
-  },
-  logo: {
-    marginRight: "auto",
-  },
-  menuButton: {
-    fontWeight: 700,
-    size: "18px",
-  },
   username: {
     fontSize: 30,
     textAlign: "center",
@@ -115,7 +97,7 @@ function PostItem(props) {
   const classes = useStyles();
   return (
     <>
-      <ListItem>
+      <ListItem button>
         <ListItemText
           primary={title}
           secondary={
@@ -152,25 +134,15 @@ function Profile() {
       },
     },
   ];
+  const Headerpages = [
+    { title: "Home", link: "/home" },
+    { title: "New thought", link: "/create-post" },
+    { title: "Profile", link: "/profile" },
+  ];
+
   return (
     <>
-      <AppBar className={classes.header} position="static">
-        <Toolbar className={classes.toolbar}>
-          <Typography variant="h6" className={classes.logo}>
-            hobo-thoughts
-          </Typography>
-          <Button className={classes.menuButton} color="inherit">
-            Home
-          </Button>
-          <Button className={classes.menuButton} color="inherit">
-            New thought
-          </Button>
-          <Button className={classes.menuButton} color="inherit">
-            Profile
-          </Button>
-        </Toolbar>
-      </AppBar>
-
+      <Header pages={Headerpages} />
       <Avatar alt="User" src={avatar} className={classes.large} />
       <Typography className={classes.username}>Sasuke_Uchiha</Typography>
       <Typography className={classes.follow}>
@@ -182,7 +154,6 @@ function Profile() {
         </Button>
       </div>
       <Divider className={classes.divider} />
-
       <Grid container justify="center" className={classes.posts}>
         <Grid item xs={6}>
           <PostList>

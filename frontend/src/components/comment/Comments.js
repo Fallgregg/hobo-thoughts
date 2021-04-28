@@ -1,97 +1,32 @@
 import React from "react";
-import {
-  AppBar,
-  Button,
-  makeStyles,
-  Toolbar,
-  Typography,
-} from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
-
 import Divider from "@material-ui/core/Divider";
 import "../home/Home.css";
 import avatar from "../home/avatars/testPic1.jpg";
 import Chip from "@material-ui/core/Chip";
+import Header from "../header/Header";
 
 const useStyles = makeStyles((theme) => ({
-  header: {
-    padding: "4px 0",
-    backgroundColor: "black",
-  },
-  toolbar: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-  },
-  text: {},
-  menu: {
-    display: "flex",
-    alignSelf: "flex-end",
-    justifyContent: "space-evenly",
-    marginRight: theme.spacing(2),
-  },
-
-  menuButton: {
-    fontWeight: 700,
-    size: "18px",
-  },
-  logo: {
-    marginRight: "1050px",
-  },
-
-  feed: {
-    fontWeight: 700,
-    size: "18px",
-    marginLeft: "120px",
-    textAlign: "center",
-    marginBottom: "20px",
-  },
-  paper: {
-    height: 140,
-    width: 100,
-    color: "transperent",
-  },
   content: {
-    marginTop: "150px",
-    marginLeft: "200px",
-    width: 1500,
-  },
-
-  username: {
-    dontSize: 12,
-  },
-  follow: {
-    fontSize: 14,
-    textAlign: "center",
-    marginTop: "5px",
-  },
-  root: {
-    marginLeft: "40px",
-  },
-  route: {
-    marginTop: "50px",
-    display: "flex",
-    justifyContent: "center",
+    margin: "32px",
   },
   title: {
     display: "flex",
     marginTop: "200px",
-    marginLeft: "300px",
     width: "1000px",
   },
   post: {
     display: "flex",
-    marginLeft: "300px",
     width: "1000px",
   },
   tags: {
     display: "flex",
-
     marginTop: "100px",
   },
   divider: {
@@ -102,20 +37,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 10,
     textAlign: "right",
   },
-  posts: {
-    marginTop: "20px",
-  },
-  icon: {
-    fontSize: 14,
-    marginLeft: "1390px",
-  },
-  button: {
-    marginLeft: "750px",
-  },
-  section1: {
-    margin: "auto",
-    marginTop: "100px",
-  },
   section2: {
     marginTop: "15px",
   },
@@ -124,92 +45,106 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const registred = true;
-
-function Home() {
+function PostItem(props) {
+  const {
+    user: { username, avatar },
+    post: { title, text, date },
+  } = props;
   const classes = useStyles();
   return (
-    <header>
-      <AppBar className={classes.header}>
-        <Toolbar className={classes.toolbar}>
-          <div className={classes.menu}>
-            <Typography variant="h6" className={classes.logo}>
-              hobo-thoughts
-            </Typography>
-            <Button
-              className={classes.menuButton}
-              color="inherit"
-              //   key: label,
-              //   to: href,
-              //   component: RouterLink,
-            >
-              {" "}
-              Home
-            </Button>
-            <Button className={classes.menuButton} color="inherit">
-              New thought
-            </Button>
-            <Button className={classes.menuButton} color="inherit">
-              Profile
-            </Button>
-          </div>
-        </Toolbar>
-      </AppBar>
-      {registred && <div>bla</div>}
+    <>
+      <List>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar alt="Fallgregg" src={avatar} />
+          </ListItemAvatar>
+          <ListItemText primary={username} />
+        </ListItem>
+      </List>
+      <Typography gutterBottom variant="h4">
+        {title}
+      </Typography>
+      <Typography color="textSecondary" variant="body2">
+        {text}
+      </Typography>
+      <Typography className={classes.date}>{date} </Typography>
+      <Divider variant="middle" />
+    </>
+  );
+}
 
+function Home() {
+  const handleClick = () => {};
+  const classes = useStyles();
+  const Headerpages = [
+    { title: "Home", link: "/home" },
+    { title: "New thought", link: "/create-post" },
+    { title: "Profile", link: "/profile" },
+  ];
+  const user = {
+    username: "Fallgregg",
+    avatar: avatar,
+  };
+  const post = {
+    title: "That book omg ..",
+    text:
+      // eslint-disable-next-line no-multi-str
+      "O Captain! my Captain! our fearful trip is done,\
+        The ship has weather’d every rack, the prize we sought is won,\
+        The port is near, the bells I hear, the people all exulting,\
+        While follow eyes the steady keel, the vessel grim and daring;\
+                                 But O heart! heart! heart!\
+                                    O the bleeding drops of red,\
+                                       Where on the deck my Captain lies,\
+                                          Fallen cold and dead\
+        O Captain! my Captain! rise up and hear the bells;\
+        Rise up—for you the flag is flung—for you the bugle trills,\
+        For you bouquets and ribbon’d wreaths—for you the shores a-crowding,\
+        For you they call, the swaying mass, their eager faces turning;\
+                                 Here Captain! dear father!\
+                                    This arm beneath your head!\
+                                       It is some dream that on the deck,\
+                                         You’ve fallen cold and dead.",
+    date: "20.04.2021",
+  };
+  return (
+    <>
+      <Header pages={Headerpages} />
       <div className={classes.content}>
         <Grid container alignItems="center" spacing={2}>
           <Grid item xs={4}>
-            <List>
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar alt="Fallgregg" src={avatar} />
-                </ListItemAvatar>
-                <ListItemText primary="Fallgregg" />
-              </ListItem>
-            </List>
+            <PostItem user={user} post={post} />
 
-            <Typography gutterBottom variant="h4">
-              That book omg ..
-            </Typography>
-
-            <Typography color="textSecondary" variant="body2">
-              Text messages are used for personal, family, business and social
-              purposes. Governmental and non-governmental organizations use text
-              messaging for communication between colleagues. In the 2010s, the
-              sending of short informal messages became an accepted part of many
-              cultures, as happened earlier with emailing.[1] This makes texting
-              a quick and easy way to communicate with friends, family and
-              colleagues, including in contexts where a call would be impolite
-              or inappropriate (e.g., calling very late at night or when one
-              knows the other person is busy with family or work activities).
-              Like e-mail and voicemail and unlike calls (in which the caller
-              hopes to speak directly with the recipient), texting does not
-              require the caller and recipient to both be free at the same
-              moment; this permits communication even between busy individuals.
-              Text messages can also be used to interact with automated systems,
-              for example, to order products or services from e-commerce
-              websites, or to participate in online contests. Advertisers and
-              service providers use direct text marketing to send messages to
-              mobile users about promotions, payment due dates, and other
-              notifications instead of using postal mail, email, or voicemail.
-            </Typography>
-            <Typography className={classes.date}>21.08.2017</Typography>
-            <Divider variant="middle" />
-
+            {/* tags */}
             <div className={classes.section2}>
               <div className={classes.section3}>
-                <Chip className={classes.chip} label="Bae" />
-                <Chip className={classes.chip} label="Music" />
-                <Chip className={classes.chip} label="Bookzz" />
-                <Chip className={classes.chip} label="Film" />
+                <Chip
+                  onClick={handleClick}
+                  className={classes.chip}
+                  label="Poetry"
+                />
+                <Chip
+                  onClick={handleClick}
+                  className={classes.chip}
+                  label="Movies"
+                />
+                <Chip
+                  onClick={handleClick}
+                  className={classes.chip}
+                  label="English"
+                />
+                <Chip
+                  onClick={handleClick}
+                  className={classes.chip}
+                  label="Lit"
+                />
               </div>
             </div>
           </Grid>
-          <Grid item xs={5} className={classes.tags}></Grid>
+          <Grid item xs={8} className={classes.tags}></Grid>
         </Grid>
       </div>
-    </header>
+    </>
   );
 }
 

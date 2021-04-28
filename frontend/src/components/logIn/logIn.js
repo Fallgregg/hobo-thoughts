@@ -1,8 +1,6 @@
 import {
-  AppBar,
   Button,
   makeStyles,
-  Toolbar,
   Typography,
   TextField,
   Link,
@@ -10,26 +8,9 @@ import {
   Container,
 } from "@material-ui/core";
 import React from "react";
+import Header from "../header/Header";
 
 const useStyles = makeStyles((theme) => ({
-  header: {
-    padding: "4px 0",
-    backgroundColor: "black",
-
-    display: "flex",
-    flexDirection: "row",
-  },
-  toolbar: {
-    width: "100%",
-    justifyContent: "flex-end",
-  },
-  logo: {
-    marginRight: "auto",
-  },
-  menuButton: {
-    fontWeight: 700,
-    size: "18px",
-  },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -48,25 +29,14 @@ const useStyles = makeStyles((theme) => ({
 
 function LogIn() {
   const classes = useStyles();
+  const Headerpages = [
+    { title: "Home", link: "/home" },
+    { title: "Sign In", link: "/login" },
+    { title: "Sign Up", link: "/signup" },
+  ];
   return (
     <>
-      <AppBar className={classes.header} position="static">
-        <Toolbar className={classes.toolbar}>
-          <Typography variant="h6" className={classes.logo}>
-            hobo-thoughts
-          </Typography>
-          <Button className={classes.menuButton} color="inherit">
-            Home
-          </Button>
-          <Button className={classes.menuButton} color="inherit">
-            Sign In
-          </Button>
-          <Button className={classes.menuButton} color="inherit">
-            Sign up
-          </Button>
-        </Toolbar>
-      </AppBar>
-
+      <Header pages={Headerpages} />
       <div className={classes.signIn}>
         <Container component="main" maxWidth="xs">
           <div className={classes.paper}>

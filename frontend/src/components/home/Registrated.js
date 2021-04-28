@@ -1,9 +1,6 @@
 import React from "react";
 import {
-  AppBar,
-  Button,
   makeStyles,
-  Toolbar,
   Typography,
   List,
   ListItem,
@@ -13,6 +10,8 @@ import {
   TextField,
   Divider,
   Grid,
+  Tabs,
+  Tab,
 } from "@material-ui/core";
 import { MemoryRouter, Route, Link } from "react-router-dom";
 import { Autocomplete, Pagination, PaginationItem } from "@material-ui/lab";
@@ -20,28 +19,9 @@ import "./Home.css";
 import avatar1 from "./avatars/testPic1.jpg";
 import avatar2 from "./avatars/testPic2.jpg";
 import avatar3 from "./avatars/testPic3.jpg";
+import Header from "../header/Header";
 
 const useStyles = makeStyles((theme) => ({
-  header: {
-    padding: "4px 0",
-    backgroundColor: "black",
-  },
-  toolbar: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-  },
-  logo: {
-    fontWeight: 600,
-    textAlign: "left",
-  },
-  menu: {
-    alignSelf: "flex-end",
-  },
-  menuButton: {
-    fontWeight: 700,
-    size: "18px",
-  },
   feed: {
     fontWeight: 700,
     size: "18px",
@@ -52,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
   content: {
     margin: "32px",
   },
-
   typography: {
     fontSize: 10,
     textAlign: "center",
@@ -134,7 +113,7 @@ function PostItem(props) {
   const classes = useStyles();
   return (
     <>
-      <ListItem>
+      <ListItem button>
         <ListItemAvatar>
           <Avatar alt={username} src={avatar} />
         </ListItemAvatar>
@@ -215,37 +194,32 @@ function HomeRegistrated() {
       },
     },
   ];
+
+  const Headerpages = [
+    { title: "Home", link: "/home" },
+    { title: "New thought", link: "/create-post" },
+    { title: "Profile", link: "/profile" },
+  ];
+
+  const [value, setValue] = React.useState(0);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   return (
     <>
-      <AppBar className={classes.header} position="static">
-        <Toolbar className={classes.toolbar}>
-          <div className={classes.menu}>
-            <Button className={classes.menuButton} color="inherit">
-              Home
-            </Button>
-            <Button className={classes.menuButton} color="inherit">
-              New thought
-            </Button>
-            <Button className={classes.menuButton} color="inherit">
-              Profile
-            </Button>
-          </div>
-          <Typography variant="h3" classname={classes.logo}>
-            hobo-thoughts
-          </Typography>
-          <Typography variant="h9" classname={classes.logo}>
-            for settled minds
-          </Typography>
-        </Toolbar>
-      </AppBar>
-
+      <Header pages={Headerpages} />
       <div className={classes.content}>
         <Grid container justify="center" spacing={4}>
           <Grid item xs={8}>
             <div disableRipple className={classes.feed}>
-              <Button color="inherit">Your feed</Button>|
-              <Button color="inherit">Genral feed</Button>
-              <Divider />
+              <Tabs
+                indicatorColor="primary"
+                value={value}
+                onChange={handleChange}
+              >
+                <Tab label="Following" />
+                <Tab label="General" />
+              </Tabs>
             </div>
             <PostList>
               {posts.map((post, index) => {
