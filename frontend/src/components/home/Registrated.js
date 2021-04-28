@@ -5,50 +5,24 @@ import {
   makeStyles,
   Toolbar,
   Typography,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
+  TextField,
+  Divider,
+  Grid,
 } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import { MemoryRouter, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
-import Pagination from "@material-ui/lab/Pagination";
-import PaginationItem from "@material-ui/lab/PaginationItem";
-import Divider from "@material-ui/core/Divider";
+import { MemoryRouter, Route, Link } from "react-router-dom";
+import { Autocomplete, Pagination, PaginationItem } from "@material-ui/lab";
 import "./Home.css";
 import avatar1 from "./avatars/testPic1.jpg";
 import avatar2 from "./avatars/testPic2.jpg";
 import avatar3 from "./avatars/testPic3.jpg";
 
 const useStyles = makeStyles((theme) => ({
-  // header: {
-  //   padding: "4px 0",
-  //   backgroundColor: "black",
-
-  //   display: "flex",
-  //   flexDirection: "row",
-  // },
-  // toolbar: {
-  //   width: "100%",
-  //   justifyContent: "flex-end",
-  // },
-  // logo: {
-  //   marginRight: "auto",
-  // },
-  // menuButton: {
-  //   fontWeight: 700,
-  //   size: "18px",
-  // },
   header: {
-    // padding: "4px 0",
-    // backgroundColor: "black",
-
-    // display: "flex",
-    // flexDirection: "row",
     padding: "4px 0",
     backgroundColor: "black",
   },
@@ -68,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     size: "18px",
   },
-
   feed: {
     fontWeight: 700,
     size: "18px",
@@ -79,9 +52,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     margin: "32px",
   },
-  tags: {
-    // marginTop: "100px",
-  },
+
   typography: {
     fontSize: 10,
     textAlign: "center",
@@ -192,7 +163,7 @@ function PostItem(props) {
   );
 }
 
-function HomeReg() {
+function HomeRegistrated() {
   const classes = useStyles();
   const posts = [
     {
@@ -249,20 +220,14 @@ function HomeReg() {
       <AppBar className={classes.header} position="static">
         <Toolbar className={classes.toolbar}>
           <div className={classes.menu}>
-            <Button
-              className={classes.menuButton}
-              color="inherit"
-              //   key: label,
-              //   to: href,
-              //   component: RouterLink,
-            >
+            <Button className={classes.menuButton} color="inherit">
               Home
             </Button>
             <Button className={classes.menuButton} color="inherit">
-              Sign in
+              New thought
             </Button>
             <Button className={classes.menuButton} color="inherit">
-              Sign up
+              Profile
             </Button>
           </div>
           <Typography variant="h3" classname={classes.logo}>
@@ -314,4 +279,4 @@ function HomeReg() {
   );
 }
 
-export default HomeReg;
+export default HomeRegistrated;

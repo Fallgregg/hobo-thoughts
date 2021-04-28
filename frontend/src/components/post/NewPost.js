@@ -5,135 +5,73 @@ import {
   makeStyles,
   Toolbar,
   Typography,
+  TextField,
 } from "@material-ui/core";
-
-import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
   header: {
     padding: "4px 0",
     backgroundColor: "black",
+    display: "flex",
+    flexDirection: "row",
   },
   toolbar: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
+    width: "100%",
+    justifyContent: "flex-end",
   },
-  text: {},
-  menu: {
-    display: "flex",
-    alignSelf: "flex-end",
-    justifyContent: "space-evenly",
-    marginRight: theme.spacing(2),
+  logo: {
+    marginRight: "auto",
   },
-
   menuButton: {
     fontWeight: 700,
     size: "18px",
   },
-  logo: {
-    marginRight: "1050px",
-  },
-
-  feed: {
-    fontWeight: 700,
-    size: "18px",
-    marginLeft: "120px",
-    textAlign: "center",
-    marginBottom: "20px",
-  },
-  paper: {
-    height: 140,
-    width: 100,
-    color: "transperent",
-  },
-  content: {
-    marginTop: "150px",
-    width: 1500,
-  },
-
-  username: {
-    fontSize: 30,
-    textAlign: "center",
-    marginTop: "5px",
-  },
-  follow: {
-    fontSize: 14,
-    textAlign: "center",
-    marginTop: "5px",
-  },
-  root: {
-    marginLeft: "40px",
-  },
-  route: {
-    marginTop: "50px",
-    display: "flex",
-    justifyContent: "center",
-  },
   title: {
     display: "flex",
-    marginTop: "200px",
-    marginLeft: "300px",
-    width: "1000px",
+    marginTop: "150px",
+    margin: "auto",
+    width: "500px",
   },
   post: {
     display: "flex",
-    marginLeft: "300px",
-    width: "1000px",
+    marginTop: "20px",
+    margin: "auto",
+    width: "500px",
   },
   tags: {
     display: "flex",
-    marginLeft: "300px",
-    width: "1000px",
-  },
-  divider: {
-    fontWeight: 700,
-    variant: "middle",
-  },
-  date: {
-    fontSize: 10,
-    textAlign: "right",
-  },
-  posts: {
     marginTop: "20px",
-  },
-  icon: {
-    fontSize: 14,
-    marginLeft: "1390px",
+    margin: "auto",
+    width: "500px",
   },
   button: {
-    marginLeft: "750px",
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "15px",
   },
 }));
+
 function NewPost() {
   const classes = useStyles();
   return (
-    <header>
-      <AppBar className={classes.header}>
+    <>
+      <AppBar className={classes.header} position="static">
         <Toolbar className={classes.toolbar}>
-          <div className={classes.menu}>
-            <Typography variant="h6" className={classes.logo}>
-              hobo-thoughts
-            </Typography>
-            <Button
-              className={classes.menuButton}
-              color="inherit"
-              //   key: label,
-              //   to: href,
-              //   component: RouterLink,
-            >
-              {" "}
-              Home
-            </Button>
-            <Button className={classes.menuButton} color="inherit">
-              New thought
-            </Button>
-            <Button className={classes.menuButton} color="inherit">
-              Profile
-            </Button>
-          </div>
+          <Typography variant="h6" className={classes.logo}>
+            hobo-thoughts
+          </Typography>
+          <Button className={classes.menuButton} color="inherit">
+            Home
+          </Button>
+          <Button className={classes.menuButton} color="inherit">
+            New thought
+          </Button>
+          <Button className={classes.menuButton} color="inherit">
+            Profile
+          </Button>
         </Toolbar>
       </AppBar>
+
       <TextField
         className={classes.title}
         id="titile"
@@ -143,7 +81,6 @@ function NewPost() {
         variant="outlined"
         margin="normal"
       />
-
       <TextField
         className={classes.post}
         id="post"
@@ -163,10 +100,12 @@ function NewPost() {
         variant="outlined"
         margin="normal"
       />
-      <Button className={classes.button} color="black" variant="contained">
-        Share
-      </Button>
-    </header>
+      <div className={classes.button}>
+        <Button className={classes.button} color="black" variant="contained">
+          Share
+        </Button>
+      </div>
+    </>
   );
 }
 

@@ -5,30 +5,24 @@ import {
   makeStyles,
   Toolbar,
   Typography,
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+  Avatar,
+  Divider,
 } from "@material-ui/core";
-
-import Grid from "@material-ui/core/Grid";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-
-import Avatar from "@material-ui/core/Avatar";
-
 import { MemoryRouter, Route } from "react-router";
 import { Link } from "react-router-dom";
-import Pagination from "@material-ui/lab/Pagination";
-import PaginationItem from "@material-ui/lab/PaginationItem";
-import Divider from "@material-ui/core/Divider";
-import "../home/Home.css";
-import avatar1 from "../home/avatars/testPic1.jpg";
-
 import SettingsIcon from "@material-ui/icons/Settings";
+import { Pagination, PaginationItem } from "@material-ui/lab/";
+import "../home/Home.css";
+import avatar from "../home/avatars/testPic1.jpg";
 
 const useStyles = makeStyles((theme) => ({
   header: {
     padding: "4px 0",
     backgroundColor: "black",
-
     display: "flex",
     flexDirection: "row",
   },
@@ -43,24 +37,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     size: "18px",
   },
-
-  feed: {
-    fontWeight: 700,
-    size: "18px",
-    marginLeft: "120px",
-    textAlign: "center",
-    marginBottom: "20px",
-  },
-  paper: {
-    height: 140,
-    width: 100,
-    color: "transperent",
-  },
-  content: {
-    marginTop: "150px",
-    width: 1500,
-  },
-
   username: {
     fontSize: 30,
     textAlign: "center",
@@ -81,11 +57,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   large: {
-    // display: "flex",
     marginTop: "25px",
-    // marginLeft: "650px",
     margin: "auto",
-
     width: "240px",
     height: "240px",
   },
@@ -97,13 +70,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 10,
     textAlign: "right",
   },
-
   icon: {
     display: "flex",
-    alignSelf: "flex-end",
-  },
-  button: {
-    marginLeft: "750px",
+    justifyContent: "flex-end",
   },
 }));
 
@@ -167,7 +136,8 @@ function PostItem(props) {
     </>
   );
 }
-function Profile() {
+
+function PersonalProfile() {
   const classes = useStyles();
   const posts = [
     {
@@ -195,45 +165,12 @@ function Profile() {
   ];
   return (
     <>
-      {/* <AppBar className={classes.header}>
-        <Toolbar className={classes.toolbar}>
-          <div className={classes.menu}>
-            <Typography variant="h6" className={classes.logo}>
-              hobo-thoughts
-            </Typography>
-            <Button
-              className={classes.menuButton}
-              color="inherit"
-              //   key: label,
-              //   to: href,
-              //   component: RouterLink,
-            >
-              {" "}
-              Home
-            </Button>
-            <Button className={classes.menuButton} color="inherit">
-              New thought
-            </Button>
-            <Button className={classes.menuButton} color="inherit">
-              Profile
-            </Button>
-          </div>
-        </Toolbar>
-        
-      </AppBar> */}
       <AppBar className={classes.header} position="static">
         <Toolbar className={classes.toolbar}>
           <Typography variant="h6" className={classes.logo}>
             hobo-thoughts
           </Typography>
-          <Button
-            className={classes.menuButton}
-            color="inherit"
-            //   key: label,
-            //   to: href,
-            //   component: RouterLink,
-          >
-            {" "}
+          <Button className={classes.menuButton} color="inherit">
             Home
           </Button>
           <Button className={classes.menuButton} color="inherit">
@@ -245,13 +182,13 @@ function Profile() {
         </Toolbar>
       </AppBar>
 
-      <Avatar alt="User" src={avatar1} className={classes.large} />
+      <Avatar alt="User" src={avatar} className={classes.large} />
       <Typography className={classes.username}>Fallgregg</Typography>
       <Typography className={classes.follow}>
         Following: {120} &nbsp; &nbsp; Followers: {19}
       </Typography>
       <div className={classes.icon}>
-        <Button>
+        <Button className={classes.icon}>
           <SettingsIcon /> Settings
         </Button>
       </div>
@@ -272,4 +209,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default PersonalProfile;

@@ -5,64 +5,37 @@ import {
   makeStyles,
   Toolbar,
   Typography,
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+  Avatar,
+  Divider,
 } from "@material-ui/core";
-
-import Grid from "@material-ui/core/Grid";
-
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-
-import Avatar from "@material-ui/core/Avatar";
-
-import Divider from "@material-ui/core/Divider";
+import { MemoryRouter, Route } from "react-router";
+import { Link } from "react-router-dom";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+import { Pagination, PaginationItem } from "@material-ui/lab/";
 import "../home/Home.css";
 import avatar from "../home/avatars/testPic2.jpg";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
 
 const useStyles = makeStyles((theme) => ({
   header: {
     padding: "4px 0",
     backgroundColor: "black",
+    display: "flex",
+    flexDirection: "row",
   },
   toolbar: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
+    width: "100%",
+    justifyContent: "flex-end",
   },
-
-  menu: {
-    display: "flex",
-    alignSelf: "flex-end",
-    justifyContent: "space-evenly",
-    marginRight: theme.spacing(2),
+  logo: {
+    marginRight: "auto",
   },
-
   menuButton: {
     fontWeight: 700,
     size: "18px",
-  },
-  logo: {
-    marginRight: "1050px",
-  },
-
-  feed: {
-    fontWeight: 700,
-    size: "18px",
-    marginLeft: "120px",
-    textAlign: "center",
-    marginBottom: "20px",
-  },
-  paper: {
-    height: 140,
-    width: 100,
-    color: "transperent",
-  },
-  content: {
-    marginTop: "150px",
-    width: 1500,
-  },
-  tags: {
-    marginTop: "100px",
   },
   username: {
     fontSize: 30,
@@ -74,18 +47,15 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     marginTop: "5px",
   },
-  root: {
-    marginLeft: "40px",
-  },
   route: {
-    marginTop: "50px",
+    marginTop: "40px",
+    marginBottom: "40px",
     display: "flex",
     justifyContent: "center",
   },
   large: {
-    display: "flex",
-    marginTop: "100px",
-    marginLeft: "650px",
+    marginTop: "25px",
+    margin: "auto",
     width: "240px",
     height: "240px",
   },
@@ -97,91 +67,134 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 10,
     textAlign: "right",
   },
-  posts: {
-    marginTop: "20px",
-  },
   icon: {
-    fontSize: 14,
-    marginLeft: "1390px",
-  },
-  button: {
-    marginLeft: "750px",
+    display: "flex",
+    justifyContent: "flex-end",
   },
 }));
-function Profile() {
+
+function PostList(props) {
   const classes = useStyles();
   return (
-    <header>
-      <AppBar className={classes.header}>
+    <div>
+      <List className={classes.postList}>{props.children}</List>
+      <div className={classes.route}>
+        <MemoryRouter initialEntries={["/inbox"]} initialIndex={0}>
+          <Route>
+            {({ location }) => {
+              const query = new URLSearchParams(location.search);
+              const page = parseInt(query.get("page") || "1", 10);
+              return (
+                <Pagination
+                  page={page}
+                  count={10}
+                  renderItem={(item) => (
+                    <PaginationItem
+                      component={Link}
+                      to={`/inbox${
+                        item.page === 1 ? "" : `?page=${item.page}`
+                      }`}
+                      {...item}
+                    />
+                  )}
+                />
+              );
+            }}
+          </Route>
+        </MemoryRouter>
+      </div>
+    </div>
+  );
+}
+
+function PostItem(props) {
+  const {
+    post: { title, text, date },
+    last,
+  } = props;
+  const classes = useStyles();
+  return (
+    <>
+      <ListItem>
+        <ListItemText
+          primary={title}
+          secondary={
+            <React.Fragment>
+              {text}
+              <Typography color="textPrimary" className={classes.date}>
+                {date}
+              </Typography>
+            </React.Fragment>
+          }
+        />
+      </ListItem>
+      {!last && <Divider />}
+    </>
+  );
+}
+
+function Profile() {
+  const classes = useStyles();
+  const posts = [
+    {
+      post: {
+        title: "Hands up!",
+        text:
+          "Reading and trying to practise my new technique is too difficult.",
+        date: "18.02.2021",
+      },
+    },
+    {
+      post: {
+        title: "Baby Sakura",
+        text: "What do you thibk about Sakura skills? ...",
+        date: "22.10.2019",
+      },
+    },
+  ];
+  return (
+    <>
+      <AppBar className={classes.header} position="static">
         <Toolbar className={classes.toolbar}>
-          <div className={classes.menu}>
-            <Typography variant="h6" className={classes.logo}>
-              hobo-thoughts
-            </Typography>
-            <Button
-              className={classes.menuButton}
-              color="inherit"
-              //   key: label,
-              //   to: href,
-              //   component: RouterLink,
-            >
-              {" "}
-              Home
-            </Button>
-            <Button className={classes.menuButton} color="inherit">
-              New thought
-            </Button>
-            <Button className={classes.menuButton} color="inherit">
-              Profile
-            </Button>
-          </div>
+          <Typography variant="h6" className={classes.logo}>
+            hobo-thoughts
+          </Typography>
+          <Button className={classes.menuButton} color="inherit">
+            Home
+          </Button>
+          <Button className={classes.menuButton} color="inherit">
+            New thought
+          </Button>
+          <Button className={classes.menuButton} color="inherit">
+            Profile
+          </Button>
         </Toolbar>
       </AppBar>
+
       <Avatar alt="User" src={avatar} className={classes.large} />
       <Typography className={classes.username}>Sasuke_Uchiha</Typography>
       <Typography className={classes.follow}>
-        Following: {50} &nbsp; &nbsp; Followers: {300}
+        Following: {1200} &nbsp; &nbsp; Followers: {199}
       </Typography>
-      <Button className={classes.icon}>
-        <AddCircleIcon /> Follow
-      </Button>
+      <div className={classes.icon}>
+        <Button className={classes.icon}>
+          <AddCircleIcon /> Follow
+        </Button>
+      </div>
       <Divider className={classes.divider} />
 
-      <Grid container justify="center" className={classes.posts} spacing={2}>
-        <Grid item xs={4}>
-          <ListItem>
-            <ListItemText
-              primary="Baby Sakura"
-              secondary={
-                <React.Fragment>
-                  {"What do you thibk about Sakura skills? ..."}
-                  <Typography color="textPrimary" className={classes.date}>
-                    22.10.2019
-                  </Typography>
-                </React.Fragment>
-              }
-            />
-          </ListItem>
-          <Divider />
-          <ListItem>
-            <ListItemText
-              primary="Hands up!"
-              secondary={
-                <React.Fragment>
-                  {
-                    "Reading and trying to practise my new technique is too difficult."
-                  }
-                  <Typography color="textPrimary" className={classes.date}>
-                    18.02.2021
-                  </Typography>
-                </React.Fragment>
-              }
-            />
-          </ListItem>
+      <Grid container justify="center" className={classes.posts}>
+        <Grid item xs={6}>
+          <PostList>
+            {posts.map((post, index) => {
+              const { post: postData } = post;
+              const last = index === posts.length - 1;
+              return <PostItem post={postData} last={last} />;
+            })}
+          </PostList>
         </Grid>
       </Grid>
-      <Button className={classes.button}>More</Button>
-    </header>
+    </>
   );
 }
 

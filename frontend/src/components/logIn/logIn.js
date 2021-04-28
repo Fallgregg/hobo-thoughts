@@ -4,30 +4,27 @@ import {
   makeStyles,
   Toolbar,
   Typography,
+  TextField,
+  Link,
+  Grid,
+  Container,
 } from "@material-ui/core";
 import React from "react";
-import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
-import "../home/Home.css";
 
 const useStyles = makeStyles((theme) => ({
   header: {
-    padding: "0.5px 0",
+    padding: "4px 0",
     backgroundColor: "black",
+
+    display: "flex",
+    flexDirection: "row",
   },
   toolbar: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
+    width: "100%",
+    justifyContent: "flex-end",
   },
   logo: {
-    fontWeight: 600,
-    textAlign: "left",
-  },
-  menu: {
-    alignSelf: "flex-end",
+    marginRight: "auto",
   },
   menuButton: {
     fontWeight: 700,
@@ -46,36 +43,30 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-  signIn: {
-    padding: "70px",
-  },
+  signIn: {},
 }));
 
 function LogIn() {
   const classes = useStyles();
   return (
-    <header>
-      <AppBar className={classes.header}>
+    <>
+      <AppBar className={classes.header} position="static">
         <Toolbar className={classes.toolbar}>
-          <div className={classes.menu}>
-            <Button
-              className={classes.menuButton}
-              color="inherit"
-              //   key: label,
-              //   to: href,
-              //   component: RouterLink,
-            >
-              Home
-            </Button>
-            <Button className={classes.menuButton} color="inherit">
-              Sign in
-            </Button>
-            <Button className={classes.menuButton} color="inherit">
-              Sign up
-            </Button>
-          </div>
+          <Typography variant="h6" className={classes.logo}>
+            hobo-thoughts
+          </Typography>
+          <Button className={classes.menuButton} color="inherit">
+            Home
+          </Button>
+          <Button className={classes.menuButton} color="inherit">
+            Sign In
+          </Button>
+          <Button className={classes.menuButton} color="inherit">
+            Sign up
+          </Button>
         </Toolbar>
       </AppBar>
+
       <div className={classes.signIn}>
         <Container component="main" maxWidth="xs">
           <div className={classes.paper}>
@@ -124,7 +115,7 @@ function LogIn() {
           </div>
         </Container>
       </div>
-    </header>
+    </>
   );
 }
 
