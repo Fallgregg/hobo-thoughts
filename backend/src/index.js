@@ -19,47 +19,44 @@ app.use(cors());
 const router = new Router();
 
 router.get("/",async (ctx,next)=>{
-  let bodyContent = "";
-  for (let i = 0; i < posts.length; i++) {
-    bodyContent += `
-    <h3>${posts[i].title}</h3>
-    <p>${posts[i].text}</p>
-    <span>${posts[i].likes}</span>
-    <br><br>
-  `;
-  }
-
   ctx.status = HttpStatus.OK;
-  ctx.body = bodyContent;
+  ctx.body = posts;
+  await next();
+});
 
-  delete bodyContent;
-  
+router.get("/log-in",async (ctx,next)=>{
+  ctx.status = HttpStatus.OK;
+  ctx.body = "";
+  await next();
+});
+
+router.get("/sing-up",async (ctx,next)=>{
+  ctx.status = HttpStatus.OK;
+  ctx.body = "";
+  await next();
+});
+
+router.get("/comments",async (ctx,next)=>{
+  ctx.status = HttpStatus.OK;
+  ctx.body = "";
+  await next();
+});
+
+router.get("/settings",async (ctx,next)=>{
+  ctx.status = HttpStatus.OK;
+  ctx.body = "";
+  await next();
+});
+
+router.get("/post",async (ctx,next)=>{
+  ctx.status = HttpStatus.OK;
+  ctx.body = "";
   await next();
 });
 
 router.get("/profile",async (ctx,next)=>{
-  let bodyContent = `
-    <h1>${profile.login}</h1>
-    <div>
-      <span>Following: ${profile.following}</span>
-      <span>Followers: ${profile.followers}</span>
-    </div>
-    <br><br>
-  `;
-  for (let i = 0; i < profile.posts.length; i++) {
-    bodyContent += `
-    <h3>${profile.posts[i].title}</h3>
-    <p>${profile.posts[i].text}</p>
-    <span>${profile.posts[i].date}</span>
-    <br><br>
-  `;
-  }
-
   ctx.status = HttpStatus.OK;
-  ctx.body = bodyContent;
-
-  delete bodyContent;
-
+  ctx.body = profile;
   await next();
 });
 
