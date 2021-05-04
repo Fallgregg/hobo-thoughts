@@ -4,7 +4,7 @@ import Home from "./home/Home";
 import SignUp from "./signUp/SignUp";
 import SignIn from "./logIn/SignIn";
 import NewPost from "./post/NewPost";
-import Profile from "./profile/PersonalProfile";
+import Profile from "./profile/Profile";
 import Comments from "./comment/Comments";
 import Settings from "./settings/Settings";
 

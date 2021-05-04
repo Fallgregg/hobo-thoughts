@@ -150,18 +150,18 @@ function PersonalProfile() {
     { title: "New thought", link: "/create-post" },
     { title: "Profile", link: "/profile" },
   ];
-  const isPersonal = true;
+  // const isPersonal = true;
   return (
     <>
       <Header pages={Headerpages} />
-      
+
       <Avatar alt="User" src={avatar} className={classes.large} />
       <Typography className={classes.username}>Fallgregg</Typography>
       <Typography className={classes.follow}>
         Following: {120} &nbsp; &nbsp; Followers: {19}
       </Typography>
       <div className={classes.icon}>
-        <Button component={Link} to="/settings"className={classes.icon}>
+        <Button component={Link} to="/settings" className={classes.icon}>
           <SettingsIcon /> Settings
         </Button>
       </div>

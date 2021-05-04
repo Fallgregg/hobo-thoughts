@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, makeStyles, TextField } from "@material-ui/core";
 import Header from "../header/Header";
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -92,13 +92,18 @@ function NewPost() {
         margin="normal"
       /> */}
       <Autocomplete
-      className={classes.tags}
+        className={classes.tags}
         multiple
         id="multiple-limit-tags"
         options={topics}
         getOptionLabel={(option) => option.title}
         renderInput={(params) => (
-          <TextField {...params} variant="outlined" label="Add tags" placeholder="Favorites" />
+          <TextField
+            {...params}
+            variant="outlined"
+            label="Add tags"
+            placeholder="Favorites"
+          />
         )}
       />
       <div className={classes.button}>
