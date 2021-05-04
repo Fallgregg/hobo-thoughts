@@ -11,6 +11,13 @@ import "../home/Home.css";
 import avatar from "../home/avatars/testPic1.jpg";
 import Chip from "@material-ui/core/Chip";
 import Header from "../header/Header";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+import IconButton from "@material-ui/core/IconButton";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import { red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -23,11 +30,9 @@ const useStyles = makeStyles((theme) => ({
   },
   post: {
     display: "flex",
-    width: "1000px",
   },
   tags: {
     display: "flex",
-    marginTop: "100px",
   },
   divider: {
     fontWeight: 700,
@@ -38,10 +43,24 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "right",
   },
   section2: {
+    width: "100%",
     marginTop: "15px",
   },
   section3: {
+    width: "100%",
     justifyContent: "space-between",
+  },
+  commentsSection: {
+    margin: "auto",
+  },
+  root: {
+    alignSelf: "flex-start",
+    maxWidth: 600,
+    backgroundColor: "inherit",
+  },
+
+  avatar: {
+    backgroundColor: red[500],
   },
 }));
 
@@ -51,6 +70,7 @@ function PostItem(props) {
     post: { title, text, date },
   } = props;
   const classes = useStyles();
+
   return (
     <>
       <List>
@@ -141,7 +161,33 @@ function Home() {
               </div>
             </div>
           </Grid>
-          <Grid item xs={8} className={classes.tags}></Grid>
+          <Grid item xs={8} className={classes.tags}>
+            <div className={classes.commentsSection}>
+              <Card className={classes.root}>
+                <CardHeader
+                  avatar={<Avatar className={classes.avatar}>R</Avatar>}
+                  title="Chris_002"
+                  subheader="September 14, 2016"
+                />
+                <CardContent>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    This impressive paella is a perfect party dish and a fun
+                    meal to cook together with your guests. Add 1 cup of frozen
+                    peas along with the mussels, if you like.
+                  </Typography>
+                </CardContent>
+                <CardActions disableSpacing>
+                  <IconButton aria-label="add to favorites">
+                    <FavoriteIcon />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </div>
+          </Grid>
         </Grid>
       </div>
     </>

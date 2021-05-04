@@ -187,12 +187,14 @@ function Home() {
   ];
   const Headerpages = [
     { title: "Home", link: "/home" },
-    { title: "Sign In", link: "/login" },
-    { title: "Sign Up", link: "/signup" },
+    { title: "Sign In", link: "/sign-in" },
+    { title: "Sign Up", link: "/sign-up" },
   ];
+
   return (
     <>
       <Header pages={Headerpages} />
+
       <div className={classes.content}>
         <Grid container justify="center" spacing={4}>
           <Grid item xs={8}>

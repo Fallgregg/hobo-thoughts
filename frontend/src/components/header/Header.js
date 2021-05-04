@@ -6,6 +6,7 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -39,7 +40,12 @@ function Header(props) {
         <Toolbar className={classes.toolbar}>
           <div className={classes.menu}>
             {pages.map(({ title, link }) => (
-              <Button tex className={classes.menuButton} color="inherit">
+              <Button
+                className={classes.menuButton}
+                color="inherit"
+                component={Link}
+                to={link}
+              >
                 {title}
               </Button>
             ))}

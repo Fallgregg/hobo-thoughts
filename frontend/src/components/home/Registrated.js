@@ -205,9 +205,11 @@ function HomeRegistrated() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   return (
     <>
       <Header pages={Headerpages} />
+
       <div className={classes.content}>
         <Grid container justify="center" spacing={4}>
           <Grid item xs={8}>
