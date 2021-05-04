@@ -69,17 +69,48 @@ app.listen(PORT, function () {
 
 const posts = [
   {
-    title: "Post Title 1",
-    text: "Limia porbeagle shark morwong dragonfish grunion southern grayling wolffish. Graveldiver rohu smoothtongue tommy ruff, wallago flathead, Pacific cod Canthigaster rostrata panga, Reef triggerfish crestfish whiting.",
-    likes: 100,
-  },{
-    title: "Post Title 2",
-    text: "Limia porbeagle shark morwong dragonfish grunion southern grayling wolffish. Graveldiver rohu smoothtongue tommy ruff, wallago flathead, Pacific cod Canthigaster rostrata panga, Reef triggerfish crestfish whiting.",
-    likes: 101,
-  },{
-    title: "Post Title 3",
-    text: "Limia porbeagle shark morwong dragonfish grunion southern grayling wolffish. Graveldiver rohu smoothtongue tommy ruff, wallago flathead, Pacific cod Canthigaster rostrata panga, Reef triggerfish crestfish whiting.",
-    likes: 102,
+    user: {
+      username: "Fallgregg",
+      avatar: "",
+    },
+    post: {
+      title: "That book omg ..",
+      text: "- Last week I`ve finished reading 'Find me ' by Andre Aciman ...",
+      date: "20.04.2021",
+    },
+  },
+  {
+    user: {
+      username: "Sasuke_Uchiha",
+      avatar: "",
+    },
+    post: {
+      title: "That book omg ..",
+      text: "- Last week I`ve finished reading 'Find me ' by Andre Aciman ...",
+      date: "20.04.2021",
+    },
+  },
+  {
+    user: {
+      username: "Fallgregg",
+      avatar: "",
+    },
+    post: {
+      title: "That book omg ..",
+      text: "- Last week I`ve finished reading 'Find me ' by Andre Aciman ...",
+      date: "20.04.2021",
+    },
+  },
+  {
+    user: {
+      username: "Fallgregg",
+      avatar: "",
+    },
+    post: {
+      title: "That book omg ..",
+      text: "- Last week I`ve finished reading 'Find me ' by Andre Aciman ...",
+      date: "20.04.2021",
+    },
   },
 ];
 
