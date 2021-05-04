@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import Header from "../header/Header";
+import "../home/Home.css";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,8 +32,8 @@ function LogIn() {
   const classes = useStyles();
   const Headerpages = [
     { title: "Home", link: "/home" },
-    { title: "Sign In", link: "/login" },
-    { title: "Sign Up", link: "/signup" },
+    { title: "Sign In", link: "/sign-in" },
+    { title: "Sign Up", link: "/sign-up" },
   ];
   return (
     <>

@@ -135,7 +135,7 @@ function Profile() {
     },
   ];
   const Headerpages = [
-    { title: "Home", link: "/home" },
+    { title: "Home", link: "/" },
     { title: "New thought", link: "/create-post" },
     { title: "Profile", link: "/profile" },
   ];

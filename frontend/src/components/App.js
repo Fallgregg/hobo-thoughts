@@ -1,10 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./home/Registrated";
+import Home from "./home/Home";
 import SignUp from "./signUp/SignUp";
-import LogIn from "./logIn/logIn";
+import SignIn from "./logIn/SignIn";
 import NewPost from "./post/NewPost";
 import Profile from "./profile/PersonalProfile";
+import Comments from "./comment/Comments";
+import Settings from "./settings/Settings";
 
 function App() {
   return (
@@ -15,7 +17,7 @@ function App() {
             <Home />
           </Route>
           <Route path="/sign-in">
-            <LogIn />
+            <SignIn />
           </Route>
           <Route path="/sign-up">
             <SignUp />
@@ -25,6 +27,12 @@ function App() {
           </Route>
           <Route path="/profile">
             <Profile />
+          </Route>
+          <Route path="/comments">
+            <Comments />
+          </Route>
+          <Route path="/settings">
+            <Settings />
           </Route>
         </Switch>
       </div>

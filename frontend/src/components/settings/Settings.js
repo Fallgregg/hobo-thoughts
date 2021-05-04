@@ -1,7 +1,8 @@
 import React from "react";
-import { Button, makeStyles, TextField } from "@material-ui/core";
+import { Avatar, Button, IconButton, makeStyles, TextField } from "@material-ui/core";
 import "../home/Home.css";
 import Header from "../header/Header";
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -12,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   username: {
     display: "flex",
     margin: "auto",
-    marginTop: "330px",
+    marginTop: "30px",
     width: "500px",
   },
   email: {
@@ -27,6 +28,16 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "15px",
     width: "500px",
   },
+  input: {
+    
+    display: 'none',
+  },
+  large: {
+    marginTop: "25px",
+    margin: "auto",
+    width: "240px",
+    height: "240px",
+  },
 }));
 
 function Settings() {
@@ -39,7 +50,22 @@ function Settings() {
   return (
     <>
       <Header pages={Headerpages} />
+      <input
+        accept="image/*"
+        className={classes.input}
+        id="contained-button-file"
+        multiple
+        type="file"
+      />   
+      <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
+      <label htmlFor="icon-button-file">
+        {/* <IconButton color="primary" aria-label="upload picture" component="span">
+          <PhotoCamera />
+        </IconButton> */}
+        <Avatar className={classes.large} alt="Upload Picture" srcSet="" />
+      </label>
       <TextField
+
         className={classes.username}
         id="username"
         label="Username"

@@ -10,8 +10,6 @@ import {
   TextField,
   Divider,
   Grid,
-  Tabs,
-  Tab,
 } from "@material-ui/core";
 import { MemoryRouter, Route, Link } from "react-router-dom";
 import { Autocomplete, Pagination, PaginationItem } from "@material-ui/lab";
@@ -22,13 +20,6 @@ import avatar3 from "./avatars/testPic3.jpg";
 import Header from "../header/Header";
 
 const useStyles = makeStyles((theme) => ({
-  feed: {
-    fontWeight: 700,
-    size: "18px",
-    marginLeft: "120px",
-    textAlign: "center",
-    marginBottom: "20px",
-  },
   content: {
     margin: "32px",
   },
@@ -142,7 +133,7 @@ function PostItem(props) {
   );
 }
 
-function HomeRegistrated() {
+function Home() {
   const classes = useStyles();
   const posts = [
     {
@@ -194,17 +185,11 @@ function HomeRegistrated() {
       },
     },
   ];
-
   const Headerpages = [
     { title: "Home", link: "/home" },
-    { title: "New thought", link: "/create-post" },
-    { title: "Profile", link: "/profile" },
+    { title: "Sign In", link: "/sign-in" },
+    { title: "Sign Up", link: "/sign-up" },
   ];
-
-  const [value, setValue] = React.useState(0);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   return (
     <>
@@ -213,16 +198,6 @@ function HomeRegistrated() {
       <div className={classes.content}>
         <Grid container justify="center" spacing={4}>
           <Grid item xs={8}>
-            <div disableRipple className={classes.feed}>
-              <Tabs
-                indicatorColor="primary"
-                value={value}
-                onChange={handleChange}
-              >
-                <Tab label="Following" />
-                <Tab label="General" />
-              </Tabs>
-            </div>
             <PostList>
               {posts.map((post, index) => {
                 const { user, post: postData } = post;
@@ -231,7 +206,6 @@ function HomeRegistrated() {
               })}
             </PostList>
           </Grid>
-
           <Grid item xs={4} className={classes.tags}>
             <Autocomplete
               multiple
@@ -255,4 +229,4 @@ function HomeRegistrated() {
   );
 }
 
-export default HomeRegistrated;
+export default Home;
