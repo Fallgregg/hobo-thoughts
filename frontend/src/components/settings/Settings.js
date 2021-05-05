@@ -62,9 +62,6 @@ function Settings() {
         type="file"
       />
       <label htmlFor="icon-button-file">
-        {/* <IconButton color="primary" aria-label="upload picture" component="span">
-          <PhotoCamera />
-        </IconButton> */}
         <Avatar className={classes.large} alt="Upload Picture" srcSet="" />
       </label>
       <TextField

@@ -1,24 +1,21 @@
 import React from "react";
 import {
   Button,
-  makeStyles,
   Typography,
   Grid,
-  List,
-  ListItem,
-  ListItemText,
   Avatar,
   Divider,
   withStyles,
+  Link,
 } from "@material-ui/core";
-import { MemoryRouter, Route } from "react-router";
-import { Link } from "react-router-dom";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import { Pagination, PaginationItem } from "@material-ui/lab/";
+import SettingsIcon from "@material-ui/icons/Settings";
 import "../home/Home.css";
 import avatar from "../home/avatars/testPic2.jpg";
 import Header from "../header/Header";
 import { getProfileinfo } from "../../API/api";
+import PostItem from "../postItem/PostItemProfile";
+import PostList from "../postList/PostList";
 
 const styles = (theme) => ({
   username: {
@@ -47,79 +44,6 @@ const styles = (theme) => ({
   },
 });
 
-const useStyles = makeStyles((theme) => ({
-  route: {
-    marginTop: "40px",
-    marginBottom: "40px",
-    display: "flex",
-    justifyContent: "center",
-  },
-  date: {
-    fontSize: 10,
-    textAlign: "right",
-  },
-}));
-
-function PostList(props) {
-  const classes = useStyles();
-  return (
-    <div>
-      <List className={classes.postList}>{props.children}</List>
-      <div className={classes.route}>
-        <MemoryRouter initialEntries={["/inbox"]} initialIndex={0}>
-          <Route>
-            {({ location }) => {
-              const query = new URLSearchParams(location.search);
-              const page = parseInt(query.get("page") || "1", 10);
-              return (
-                <Pagination
-                  page={page}
-                  count={10}
-                  renderItem={(item) => (
-                    <PaginationItem
-                      component={Link}
-                      to={`/inbox${
-                        item.page === 1 ? "" : `?page=${item.page}`
-                      }`}
-                      {...item}
-                    />
-                  )}
-                />
-              );
-            }}
-          </Route>
-        </MemoryRouter>
-      </div>
-    </div>
-  );
-}
-
-function PostItem(props) {
-  const {
-    post: { title, text, date },
-    last,
-  } = props;
-  const classes = useStyles();
-  return (
-    <>
-      <ListItem button>
-        <ListItemText
-          primary={title}
-          secondary={
-            <React.Fragment>
-              {text}
-              <Typography color="textPrimary" className={classes.date}>
-                {date}
-              </Typography>
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      {!last && <Divider />}
-    </>
-  );
-}
-
 class Profile extends React.Component {
   constructor(props) {
     super(props);
@@ -144,6 +68,7 @@ class Profile extends React.Component {
   }
 
   render() {
+    const isPersonal = false;
     const { classes } = this.props;
     const {
       posts,
@@ -167,7 +92,7 @@ class Profile extends React.Component {
     //   },
     // ];
     const Headerpages = [
-      { title: "Home", link: "/" },
+      { title: "Home", link: "/home" },
       { title: "New thought", link: "/create-post" },
       { title: "Profile", link: "/profile" },
     ];
@@ -181,9 +106,16 @@ class Profile extends React.Component {
           Following: {following} &nbsp; &nbsp; Followers: {followers}
         </Typography>
         <div className={classes.icon}>
-          <Button className={classes.icon}>
-            <AddCircleIcon /> Follow
-          </Button>
+          {isPersonal && (
+            <Button className={classes.icon}>
+              <AddCircleIcon /> Follow
+            </Button>
+          )}
+          {!isPersonal && (
+            <Button component={Link} to="/settings">
+              <SettingsIcon /> Settings
+            </Button>
+          )}
         </div>
         <Divider className={classes.divider} />
         <Grid container justify="center" className={classes.posts}>
