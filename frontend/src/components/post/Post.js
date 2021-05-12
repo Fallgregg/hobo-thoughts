@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, makeStyles, TextField, Typography } from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -11,13 +11,13 @@ import "../home/Home.css";
 import avatar from "../home/avatars/testPic1.jpg";
 import Chip from "@material-ui/core/Chip";
 import Header from "../header/Header";
-import { Link } from "react-router-dom";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import IconButton from "@material-ui/core/IconButton";
-import FavoriteIcon from "@material-ui/icons/Favorite";
+// import { Link } from "react-router-dom";
+// import Card from "@material-ui/core/Card";
+// import CardHeader from "@material-ui/core/CardHeader";
+// import CardContent from "@material-ui/core/CardContent";
+// import CardActions from "@material-ui/core/CardActions";
+// import IconButton from "@material-ui/core/IconButton";
+// import FavoriteIcon from "@material-ui/icons/Favorite";
 import { red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles(() => ({
@@ -169,7 +169,7 @@ function Home() {
             </div>
           </div>
 
-          <Grid item xs={6} className={classes.tags}>
+          {/* <Grid item xs={6} className={classes.tags}>
             <TextField
               className={classes.post}
               id="post"
@@ -261,7 +261,7 @@ function Home() {
                 </Card>
               </div>
             </div>
-          </Grid>
+          </Grid> */}
         </Grid>
       </div>
     </>
