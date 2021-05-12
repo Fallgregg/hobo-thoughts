@@ -2,7 +2,7 @@ import React from "react";
 import { Button, makeStyles, TextField } from "@material-ui/core";
 import Header from "../header/Header";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-
+import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   title: {
     display: "flex",
@@ -107,7 +107,13 @@ function NewPost() {
         )}
       />
       <div className={classes.button}>
-        <Button className={classes.button} color="black" variant="contained">
+        <Button
+          className={classes.button}
+          component={Link}
+          to="/post"
+          color="black"
+          variant="contained"
+        >
           Share
         </Button>
       </div>

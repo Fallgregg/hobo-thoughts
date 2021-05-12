@@ -26,7 +26,7 @@ function PostItem(props) {
   const classes = useStyles();
   return (
     <>
-      <ListItem button component={Link} to="/comments">
+      <ListItem button component={Link} to="/post">
         <ListItemAvatar>
           <Avatar alt={username} src={avatar} />
         </ListItemAvatar>

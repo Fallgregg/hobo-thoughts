@@ -6,7 +6,7 @@ import {
   ListItemText,
   Divider,
 } from "@material-ui/core";
-
+import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   date: {
     fontSize: 10,
@@ -22,7 +22,7 @@ function PostItem(props) {
   const classes = useStyles();
   return (
     <>
-      <ListItem button>
+      <ListItem button component={Link} to="/post">
         <ListItemText
           primary={title}
           secondary={

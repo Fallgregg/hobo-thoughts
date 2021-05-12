@@ -2,11 +2,12 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./home/Home";
 import SignUp from "./signUp/SignUp";
-import SignIn from "./logIn/SignIn";
-import NewPost from "./post/NewPost";
+import SignIn from "./signIn/SignIn";
+import NewPost from "./newPost/NewPost";
 import Profile from "./profile/Profile";
-import Comments from "./comment/Comments";
+import Post from "./post/Post";
 import Settings from "./settings/Settings";
+import Comments from "./comments/Comments";
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route path="/profile">
             <Profile />
+          </Route>
+          <Route path="/post">
+            <Post />
           </Route>
           <Route path="/comments">
             <Comments />

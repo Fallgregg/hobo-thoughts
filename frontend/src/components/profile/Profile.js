@@ -6,7 +6,6 @@ import {
   Avatar,
   Divider,
   withStyles,
-  Link,
 } from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import SettingsIcon from "@material-ui/icons/Settings";
@@ -14,6 +13,7 @@ import "../home/Home.css";
 import avatar from "../home/avatars/testPic2.jpg";
 import Header from "../header/Header";
 import { getProfileinfo } from "../../API/api";
+import { Link } from "react-router-dom";
 import PostItem from "../postItem/PostItemProfile";
 import PostList from "../postList/PostList";
 
@@ -74,29 +74,11 @@ class Profile extends React.Component {
       posts,
       profileInfo: { login, followers, following },
     } = this.state;
-    // const posts = [
-    //   {
-    //     post: {
-    //       title: "Hands up!",
-    //       text:
-    //         "Reading and trying to practise my new technique is too difficult.",
-    //       date: "18.02.2021",
-    //     },
-    //   },
-    //   {
-    //     post: {
-    //       title: "Baby Sakura",
-    //       text: "What do you thibk about Sakura skills? ...",
-    //       date: "22.10.2019",
-    //     },
-    //   },
-    // ];
     const Headerpages = [
       { title: "Home", link: "/home" },
       { title: "New thought", link: "/create-post" },
       { title: "Profile", link: "/profile" },
     ];
-
     return (
       <>
         <Header pages={Headerpages} />

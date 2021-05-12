@@ -3,13 +3,12 @@ import {
   makeStyles,
   Typography,
   TextField,
-  Link,
   Grid,
   Container,
 } from "@material-ui/core";
 import React from "react";
+import { Link } from "react-router-dom";
 import Header from "../header/Header";
-import "../home/Home.css";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -68,16 +67,16 @@ function LogIn() {
                 autoComplete="current-password"
               />
               <Button
-                type="submit"
                 variant="contained"
-                color="default"
                 className={classes.submit}
+                component={Link}
+                to={"/home"}
               >
                 Sign In
               </Button>
               <Grid container>
                 <Grid item>
-                  <Link href="#" variant="h9">
+                  <Link to="/sign-up" variant="h9">
                     {"Don't have an account?"}
                   </Link>
                 </Grid>

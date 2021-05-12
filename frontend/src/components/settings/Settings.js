@@ -2,6 +2,7 @@ import React from "react";
 import { Avatar, Button, makeStyles, TextField } from "@material-ui/core";
 import "../home/Home.css";
 import Header from "../header/Header";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -92,8 +93,14 @@ function Settings() {
         margin="normal"
       />
       <div className={classes.button}>
-        <Button className={classes.button} color="black" variant="contained">
-          SAve
+        <Button
+          className={classes.button}
+          component={Link}
+          to="/profile"
+          color="black"
+          variant="contained"
+        >
+          Save
         </Button>
       </div>
     </>

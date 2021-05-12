@@ -3,14 +3,13 @@ import {
   Button,
   makeStyles,
   Typography,
-  Link,
   Grid,
   Container,
   CssBaseline,
   TextField,
 } from "@material-ui/core";
 import Header from "../header/Header";
-import "../home/Home.css";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -84,15 +83,15 @@ function SignUp() {
                 </Grid>
               </Grid>
               <Button
-                type="submit"
                 variant="contained"
-                color="default"
                 className={classes.submit}
+                component={Link}
+                to={"/home"}
               >
                 Sign Up
               </Button>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link to="/sign-in" variant="body2">
                   {"Have an account?"}
                 </Link>
               </Grid>
