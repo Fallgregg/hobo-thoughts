@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, Typography } from "@material-ui/core";
+import { Button, makeStyles, TextField, Typography } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -11,15 +11,14 @@ import "../home/Home.css";
 import avatar from "../home/avatars/testPic1.jpg";
 import Chip from "@material-ui/core/Chip";
 import Header from "../header/Header";
-// import { Link } from "react-router-dom";
-// import Card from "@material-ui/core/Card";
-// import CardHeader from "@material-ui/core/CardHeader";
-// import CardContent from "@material-ui/core/CardContent";
-// import CardActions from "@material-ui/core/CardActions";
-// import IconButton from "@material-ui/core/IconButton";
-// import FavoriteIcon from "@material-ui/icons/Favorite";
+import { Link } from "react-router-dom";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+import IconButton from "@material-ui/core/IconButton";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import { red } from "@material-ui/core/colors";
-
+import avatar2 from "../home/avatars/testPic4.jpg";
 const useStyles = makeStyles(() => ({
   content: {
     margin: "32px",
@@ -140,128 +139,113 @@ function Home() {
     <>
       <Header pages={Headerpages} />
       <div className={classes.content}>
-        <Grid container alignItems="center" spacing={3}>
-          <PostItem user={user} post={post} />
+        <Grid container alignItems="center" spacing={2}>
+          <Grid item xs={5}>
+            <PostItem user={user} post={post} />
 
-          {/* tags */}
-          <div className={classes.section2}>
-            <div className={classes.section3}>
-              <Chip
-                onClick={handleClick}
-                className={classes.chip}
-                label="Poetry"
-              />
-              <Chip
-                onClick={handleClick}
-                className={classes.chip}
-                label="Movies"
-              />
-              <Chip
-                onClick={handleClick}
-                className={classes.chip}
-                label="English"
-              />
-              <Chip
-                onClick={handleClick}
-                className={classes.chip}
-                label="Lit"
-              />
-            </div>
-          </div>
-
-          {/* <Grid item xs={6} className={classes.tags}>
-            <TextField
-              className={classes.post}
-              id="post"
-              label="What`s in your mind?"
-              multiline
-              fullWidth
-              rows={9}
-              variant="outlined"
-              margin="normal"
-            />
-            <div className={classes.paper} style={{ padding: "25px 20px" }}>
-              <Grid container spacing={2}>
-                <Grid item>
-                  <Avatar alt="Remy Sharp" />
-                </Grid>
-                <Grid justifyContent="left" item xs zeroMinWidth>
-                  <h4 style={{ margin: 0, textAlign: "left" }}>
-                    Michel Michel
-                  </h4>
-                  <p style={{ textAlign: "left" }}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aenean luctus ut est sed faucibus. Duis bibendum ac ex
-                    vehicula laoreet. Suspendisse congue vulputate lobortis.
-                    Pellentesque at interdum tortor. Quisque arcu quam,
-                    malesuada vel mauris et, posuere sagittis ipsum. Aliquam
-                    ultricies a ligula nec faucibus. In elit metus, efficitur
-                    lobortis nisi quis, molestie porttitor metus. Pellentesque
-                    et neque risus. Aliquam vulputate, mauris vitae tincidunt
-                    interdum, mauris mi vehicula urna, nec feugiat quam lectus
-                    vitae ex.{" "}
-                  </p>
-                </Grid>
-                <Button
-                  className={classes.button}
-                  component={Link}
-                  to="/comments"
-                  variant="body2"
-                >
-                  {"Wanna know what others think of this?"}
-                </Button>
-              </Grid>
-
-              <div className={classes.commentsSection}>
-                <Card className={classes.root}>
-                  <CardHeader
-                    avatar={<Avatar className={classes.avatar}>R</Avatar>}
-                    title="Chris_002"
-                    subheader="September 14, 2016"
-                  />
-                  <CardContent>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      This impressive paella is a perfect party dish and a fun
-                      meal to cook together with your guests. Add 1 cup of
-                      frozen peas along with the mussels, if you like.
-                    </Typography>
-                  </CardContent>
-                  <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                      <FavoriteIcon />
-                    </IconButton>
-                  </CardActions>
-                </Card>
-                <Card className={classes.root}>
-                  <CardHeader
-                    avatar={<Avatar className={classes.avatar}>R</Avatar>}
-                    title="Chris_002"
-                    subheader="September 14, 2016"
-                  />
-                  <CardContent>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      This impressive paella is a perfect party dish and a fun
-                      meal to cook together with your guests. Add 1 cup of
-                      frozen peas along with the mussels, if you like.
-                    </Typography>
-                  </CardContent>
-                  <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                      <FavoriteIcon />
-                    </IconButton>
-                  </CardActions>
-                </Card>
+            {/* tags */}
+            <div className={classes.section2}>
+              <div className={classes.section3}>
+                <Chip
+                  onClick={handleClick}
+                  className={classes.chip}
+                  label="Poetry"
+                />
+                <Chip
+                  onClick={handleClick}
+                  className={classes.chip}
+                  label="Movies"
+                />
+                <Chip
+                  onClick={handleClick}
+                  className={classes.chip}
+                  label="English"
+                />
+                <Chip
+                  onClick={handleClick}
+                  className={classes.chip}
+                  label="Lit"
+                />
               </div>
             </div>
-          </Grid> */}
+          </Grid>
+
+          <Grid item xs={7} className={classes.tags}>
+            <div className={classes.commentsSection}>
+              <div className={classes.root}>
+                <CardHeader
+                  avatar={
+                    <Avatar
+                      component={Link}
+                      to="/profile"
+                      src={avatar2}
+                      className={classes.avatar}
+                    ></Avatar>
+                  }
+                  title={"2k7_kid"}
+                  subheader="13.06.2020"
+                />
+                <CardContent>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    My loneliness is killing me (and I). I must confess I still
+                    believe (still believe). When I'm not with you, I lose my
+                    mind. Give me a sign.
+                  </Typography>
+                </CardContent>
+                <CardActions disableSpacing>
+                  <IconButton aria-label="add to favorites">
+                    <FavoriteIcon />
+                  </IconButton>
+                </CardActions>
+                <Divider />
+              </div>
+              <div className={classes.root}>
+                <CardHeader
+                  avatar={
+                    <Avatar
+                      component={Link}
+                      to="/profile"
+                      className={classes.avatar}
+                    ></Avatar>
+                  }
+                  title={"GnR_fan"}
+                  subheader={"19.10.2018"}
+                />
+                <CardContent>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    Don't you cry tonight. I still love you baby. Don't you cry
+                    tonight.
+                  </Typography>
+                </CardContent>
+                <CardActions disableSpacing>
+                  <IconButton aria-label="add to favorites">
+                    <FavoriteIcon />
+                  </IconButton>
+                </CardActions>
+                <Divider />
+                <TextField
+                  id="post"
+                  label="Share your opinion about this thought"
+                  multiline
+                  fullWidth
+                  rows={9}
+                  variant="outlined"
+                  margin="normal"
+                />
+                <Button variant="contained" component={Link} to="/post">
+                  Share
+                </Button>
+              </div>
+            </div>
+          </Grid>
         </Grid>
       </div>
     </>
