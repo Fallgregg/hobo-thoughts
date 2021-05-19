@@ -12,7 +12,6 @@ import NewPost from "./newPost/NewPost";
 import Profile from "./profile/Profile";
 import Post from "./post/Post";
 import Settings from "./settings/Settings";
-import Comments from "./comments/Comments";
 
 function App() {
   return (
@@ -37,9 +36,6 @@ function App() {
           </Route>
           <Route path="/post">
             <Post />
-          </Route>
-          <Route path="/comments">
-            <Comments />
           </Route>
           <Route path="/settings">
             <Settings />

@@ -7,20 +7,12 @@ const serve = require("koa-static");
 const mount = require("koa-mount");
 const cors = require('koa-cors');
 const HttpStatus = require("http-status");
-const mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
-
-const User = require('./models/user');
-const Post = require('./models/post');
-const relSubscriptions = require('./models/relSubscriptions');
 
 const app = new Koa();
-mongoose.connect('mongodb://localhost/hobo-thoughts', {useNewUrlParser: true, useUnifiedTopology: true});
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log("Congrats, the connection successfully set :)");
-});
+
+const static_pages = new Koa();
+static_pages.use(serve("../../frontend/src"));
+app.use(mount('/', static_pages));
 
 const PORT = process.env.PORT || 3000;
 
@@ -31,9 +23,9 @@ app.use(cors());
 const router = new Router();
 
 router.get("/",async (ctx,next)=>{
-	ctx.status = HttpStatus.OK;  
-	ctx.body = posts;
-	await next();
+  ctx.status = HttpStatus.OK;
+  ctx.body = posts;
+  await next();
 });
 
 router.get("/log-in",async (ctx,next)=>{
@@ -78,69 +70,54 @@ app.listen(PORT, function () {
     console.log("==> To see an app visit http://localhost:%s/", PORT);
 });
 
-let posts = [];
 
-Post.find({}, "title content date author", (err, post) => {
-	let res = [];
-	for (let i = 0; i < post.length; i++)
-		User.find({"login": post[i].author}, "avatar", (err, user) => {
-			
-			let date = post[i].date;
+const posts = [
+  {
+    user: {
+      username: "Fallgregg",
+      avatar: "",
+    },
+    post: {
+      title: "That book omg ..",
+      text: "- Last week I`ve finished reading 'Find me ' by Andre Aciman ...",
+      date: "20.04.2021",
+    },
+  },
+  {
+    user: {
+      username: "Sasuke_Uchiha",
+      avatar: "",
+    },
+    post: {
+      title: "That book omg ..",
+      text: "- Last week I`ve finished reading 'Find me ' by Andre Aciman ...",
+      date: "20.04.2021",
+    },
+  },
+  {
+    user: {
+      username: "Fallgregg",
+      avatar: "",
+    },
+    post: {
+      title: "That book omg ..",
+      text: "- Last week I`ve finished reading 'Find me ' by Andre Aciman ...",
+      date: "20.04.2021",
+    },
+  },
+  {
+    user: {
+      username: "Fallgregg",
+      avatar: "",
+    },
+    post: {
+      title: "That book omg ..",
+      text: "- Last week I`ve finished reading 'Find me ' by Andre Aciman ...",
+      date: "20.04.2021",
+    },
+  },
+];
 
-			posts.push({
-				user: {
-					username: post[i].author,
-					avatar: user.avatar,
-				},
-					post: {
-					title: cropTitle(post[i].title),
-					text: cropContent(post[i].content),
-					date: `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
-				},
-			});
-		})
-}).limit(4);
-
-let profile = {};
-
-User.findOne({"login": "Fallgregg"}, "login", (errU, user) => {
-	if (!errU) {
-		profile.login = user.login;
-		relSubscriptions.find({"follower" : "Fallgregg"}, (errFR, follower) => {
-			if (!errFR) profile.follower = follower.length;
-		});
-		relSubscriptions.find({"followed" : "Fallgregg"}, (errFD, followed) => {
-			if (!errFD) profile.followed = followed.length;
-		});
-		Post.find({"author": user.login}, "title content date", (errP, post) => {
-			if (!errP) {
-				profile.posts = [];
-				for (let i = 0; i < post.length; i++) {
-					let date = post[i].date;
-					profile.posts[i] = {
-						title: cropTitle(post[i].title),
-						text: cropContent(post[i].content),
-						date: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
-					}
-				}
-			}
-		}).limit(2);
-	}
-})
-
-function cropTitle(title) {
-	let excerptTitle = title; 
-	excerptTitle = excerptTitle.replace(/^(.{14}[^\s]*).*/, "$1");
-	excerptTitle += "..";
-	return excerptTitle;
-}
-function cropContent(text) {
-	let excerptText = text;
-	excerptText = excerptText.replace(/^(.{60}[^\s]*).*/, "$1");
-	excerptText += "..";
-	return excerptText;
-}
-/*
 const profile = {
   login: "Fallgregg",
   following: 120,
@@ -156,4 +133,4 @@ const profile = {
       date: "10/12/2021",
     },
   ]
-};*/
+};
