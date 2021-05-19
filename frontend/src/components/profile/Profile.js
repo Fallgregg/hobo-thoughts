@@ -12,7 +12,7 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import "../home/Home.css";
 import avatar from "../home/avatars/testPic2.jpg";
 import Header from "../header/Header";
-import { getProfileinfo } from "../../test/test1";
+import { getProfileinfo } from "../../API/api";
 import { Link } from "react-router-dom";
 import PostItem from "../postItem/PostItemProfile";
 import PostList from "../postList/PostList";

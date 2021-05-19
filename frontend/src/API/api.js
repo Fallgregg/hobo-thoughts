@@ -1,10 +1,20 @@
-export async function getProfileinfo() {
-  const response = await fetch("http://localhost:3000/profile");
+const requestToAPI = async (url, callback) => {
+  const response = await fetch(url);
   if (response.status === 200) {
-    const { followers, following, login, posts } = await response.json();
-    const profileInfo = { login, followers, following };
-    return { posts, profileInfo };
+    return response.json();
   }
+  return null;
+};
+
+export const parseProfileInfo = (response) => {
+  const { followers, following, login, posts } = response;
+  const profileInfo = { login, followers, following };
+  return { posts, profileInfo };
+};
+
+export async function getProfileinfo() {
+  const response = await requestToAPI("http://localhost:3000/profile");
+  return parseProfileInfo(response);
 }
 
 export async function getHomepageInfo() {
