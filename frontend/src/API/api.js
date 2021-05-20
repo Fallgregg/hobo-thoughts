@@ -12,15 +12,17 @@ export const parseProfileInfo = (response) => {
   return { posts, profileInfo };
 };
 
+export const parseHomePageInfo = (response) => {
+  const posts = response;
+  return { posts };
+};
+
 export async function getProfileinfo() {
   const response = await requestToAPI("http://localhost:3000/profile");
   return parseProfileInfo(response);
 }
 
 export async function getHomepageInfo() {
-  const response = await fetch("http://localhost:3000/");
-  if (response.status === 200) {
-    const posts = await response.json();
-    return { posts };
-  }
+  const response = await requestToAPI("http://localhost:3000/");
+  return parseHomePageInfo(response);
 }
