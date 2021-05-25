@@ -46,5 +46,5 @@ workflows:
         filters:
           braches:
             only: main
-          requires:
-            - build-and-test
+        requires:
+          - build-and-test
