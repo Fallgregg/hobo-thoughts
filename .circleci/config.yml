@@ -11,7 +11,7 @@ orbs:
 
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
-  build-and-test:  
+  build-test-and-deploy:  
     # These next lines define a Docker executor: https://circleci.com/docs/2.0/executor-types/
     # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/node
@@ -34,6 +34,12 @@ jobs:
       - run:
           name: Run tests
           command: npm --prefix frontend/ test
+      - run:
+          name: Build Create React App
+          command: npm --prefix frontend/ run build
+      - run:
+          name: Firebase Deploy
+          command: frontend/node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
 
 workflows:
   # Below is the definition of your workflow.
@@ -42,6 +48,6 @@ workflows:
   # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
   sample: 
     jobs:
-      - build-and-test
+      - build-test-and-deploy
       # For running simple node tests, you could optionally use the node/test job from the orb to replicate and replace the job above in fewer lines.
       # - node/test
