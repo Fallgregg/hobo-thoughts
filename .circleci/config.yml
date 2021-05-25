@@ -26,6 +26,7 @@ jobs:
           root: frontend
           paths:
             - build
+            - firebase.json
             - node_modules
 
   deploy:  
