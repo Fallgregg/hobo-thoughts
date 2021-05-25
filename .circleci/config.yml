@@ -43,8 +43,8 @@ workflows:
     jobs:
       - build-and-test
       - deploy:
-        filters:
-          braches:
-            only: main
-        requires:
-          - build-and-test
+          filters:
+            branches:
+              only: main
+          requires:
+            - build-and-test
