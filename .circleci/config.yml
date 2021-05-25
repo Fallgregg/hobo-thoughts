@@ -39,7 +39,7 @@ jobs:
           command: npm --prefix frontend/ run build
       - run:
           name: Firebase Deploy
-          command: cd frontend && node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
+          command: cd frontend && node_modules/.bin/firebase deploy --project "$FIREBASE_PROJECT_ID" --token "$FIREBASE_TOKEN"
 
 workflows:
   # Below is the definition of your workflow.
