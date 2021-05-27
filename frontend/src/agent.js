@@ -1,23 +1,35 @@
-// import superagentPromise from 'superagent-promise';
-// import _superagent from 'superagent';
+// import superagentPromise from "superagent-promise";
+// import _superagent from "superagent";
+// import { postsMockData } from "./mock_data/data";
+
+// const superagent = superagentPromise(_superagent, global.Promise);
+
+// const encode = encodeURIComponent;
+// const responseBody = (res) => res.body;
+
+// const requests = {
+//   get: (url) => {},
+// };
 
 // const initialPosts = [];
 
 // const generatePostWraper = () => {
 //   let counter = 0;
-//   return () => ([
-//       {
-//           user: {
-//             username: "Fallgregg" + counter++,
-//             avatar: "avatar1.jpg" ,
-//           },
-//           post: {
-//             title: "That book omg .." + counter++,
-//             text: "- Last week I`ve finished reading 'Find me ' by Andre Aciman ..." + counter++,
-//             date: "20.04.2021" + counter++,
-//           }
+//   return () => [
+//     {
+//       user: {
+//         username: "Fallgregg" + counter++,
+//         avatar: "avatar1.jpg",
 //       },
-//   ]);
+//       post: {
+//         title: "That book omg .." + counter++,
+//         text:
+//           "- Last week I`ve finished reading 'Find me ' by Andre Aciman ..." +
+//           counter++,
+//         date: "20.04.2021" + counter++,
+//       },
+//     },
+//   ];
 // };
 
 // const generatePost = generatePostWraper();
@@ -110,6 +122,8 @@
 // };
 
 // const Profile = {
+//     newPosts: username =>
+//     requests.writePost('')
 //   follow: username =>
 //     requests.post(`/profiles/${username}/follow`),
 //   get: username =>
@@ -118,11 +132,11 @@
 //     requests.del(`/profiles/${username}/follow`)
 // };
 
-// // export default {
-// //   Articles,
-// //   Auth,
-// //   Comments,
-// //   Profile,
-// //   Tags,
-// //   setToken: _token => { token = _token; },
-// // };
+// export default {
+//   Articles,
+//   Auth,
+//   Comments,
+//   Profile,
+//   Tags,
+//   setToken: _token => { token = _token; },
+// };

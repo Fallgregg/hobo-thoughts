@@ -1,3 +1,5 @@
+import { postsMockData } from "./mock_data/data";
+
 const requestToAPI = async (url, callback) => {
   const response = await fetch(url);
   if (response.status === 200) {
@@ -18,7 +20,7 @@ export const parseHomePageInfo = (response) => {
 };
 
 export async function getProfileinfo() {
-  const response = await requestToAPI("http://localhost:3000/profile");
+  const response = postsMockData;
   return parseProfileInfo(response);
 }
 
