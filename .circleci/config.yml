@@ -46,6 +46,6 @@ workflows:
       - deploy:
           filters:
             branches:
-              only: frontend-implementation
+              only: main
           requires:
             - build-and-test
