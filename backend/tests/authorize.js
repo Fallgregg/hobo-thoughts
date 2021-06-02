@@ -1,6 +1,6 @@
-//require('./db-connect')();	//connect to MongoDB
+require('../src/blocks/db-connect')();	//connect to MongoDB
 
-const User = require('../models/user');	//import User mongoose model
+const User = require('../src/models/user');	//import User mongoose model
 
 async function checkData(login, password) {
     let res;

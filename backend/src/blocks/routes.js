@@ -3,7 +3,8 @@ const HttpStatus = require("http-status");
 
 const getPosts = require('./get-posts');
 const getProfileInfo = require('./get-profile-info');
-//const authorize = require('./authorize');
+const authorize = require('./authorize');
+const addNewPost = require('./add-post');
 
 function initRoutes (app) {
     const router = new Router();
@@ -27,11 +28,8 @@ function initRoutes (app) {
     });
 
     router.get("/log-in/:l/:p", async (ctx, next) => {
-        const User = require('../models/user');	
         ctx.status = HttpStatus.OK;
-        await User.findOne({"login": ctx.params.l, "password": ctx.params.p}, "login password" , async (err, user) => {
-            ctx.body = (user != null);
-        });
+        ctx.body = await authorize(ctx.params.l, ctx.params.p);
         await next();
     });
 
@@ -57,6 +55,12 @@ function initRoutes (app) {
     ctx.status = HttpStatus.OK;
     ctx.body = "";
     await next();
+    });
+
+    router.get("/post/add-post/:author/:title/:content", async (ctx, next) => {
+        ctx.status = HttpStatus.OK;
+        ctx.body = await addNewPost(ctx.params.author, ctx.params.title, ctx.params.content);
+        await next();
     });
 
     app.use(router.routes()).use(router.allowedMethods());
