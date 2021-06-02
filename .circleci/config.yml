@@ -16,9 +16,9 @@ jobs:
           app-dir: ~/project/frontend
           cache-path: ~/project/frontend/node_modules
           override-ci-command: npm i
-      - run:
-          name: Run tests
-          command: npm --prefix frontend/ test
+      # - run:
+      #     name: Run tests
+      #     command: npm --prefix frontend/ test
       - run:
           name: Build Create React App
           command: npm --prefix frontend/ run build
