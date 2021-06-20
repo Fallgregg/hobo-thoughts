@@ -1,3 +1,4 @@
+'use strict';
 
 const Koa = require("koa");
 const BodyParser = require("koa-bodyparser");
@@ -9,19 +10,8 @@ const cors = require('koa-cors');
 const HttpStatus = require("http-status");
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
+const { log } = require('./utils/utils');
 
-const app = new Koa();
+require('./main-modules/db-connect')(process.env.MONGOSERV || 'mongodb://localhost/hobo-thoughts');	//connect to MongoDB
 
-require('./blocks/db-connect')();	//connect to MongoDB
-
-const PORT = process.env.PORT || 3000;
-
-app.use(BodyParser());
-app.use(Logger());
-app.use(cors());
-
-require('./blocks/routes')(app);
-
-app.listen(PORT, function () {
-    console.log("==> To see an app visit http://localhost:%s/", PORT);
-});
+require('./main-modules/app')(process.env.PORT);    //start app

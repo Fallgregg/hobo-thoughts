@@ -1,4 +1,4 @@
-require('../src/blocks/db-connect')();	//connect to MongoDB
+require('../src/api/data-access/blocks/db-connect')();	//connect to MongoDB
 
 const Post = require('../src/models/post');	//import Post mongoose model
 
