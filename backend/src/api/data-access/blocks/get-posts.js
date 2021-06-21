@@ -6,10 +6,13 @@ const Post = require('../models/db-models').post;	//import Post mongoose model
 //crop text function import
 const { cropTextTo, log } = require('../../../utils/utils');
 
- const getPosts = async () => {
+const getPosts = async (tags) => {
   const res = [];
+  let query = {};
 
-  await Post.find({}, 'title content date author')
+  if (!!tags) query = {tags: { $in: [ tags ]}};
+
+  await Post.find(query, 'title content date author tags')
     .sort({ date: -1 })
     .limit(4)
     .then(async posts => {
@@ -26,14 +29,18 @@ const { cropTextTo, log } = require('../../../utils/utils');
               post: {
                 title: cropTextTo(post.title, 14),
                 text: cropTextTo(post.content, 60),
-                date: `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
+                date: `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`,
+                tags: post.tags
               },
             });
-          } else
-            log(err.message, 'err:getPosts');
+          } else {
+            log(err.message, 'err:get-posts');
+            return;
+          }
         });
+        log('Posts are out now', 'get-posts');
     })
-    .catch(e => log(e.message, 'err:getPosts'));
+    .catch(e => log(e.message, 'err:get-posts'));
 
   return res;
 }

@@ -21,7 +21,7 @@ const checkData = async (login, password) => {
       );
     })
     .catch(err => (
-      log(err.message, 'authorization', login),
+      log(err.message, 'authorization'),
       res = false
     ));
 
