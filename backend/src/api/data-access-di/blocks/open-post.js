@@ -5,6 +5,11 @@ const showPost = async id => {
 
   await Post.findById( id )
     .then( async post => {
+      if (!!post) {
+        log('The post with id %s don\'t exist', 'err:open-post', id);
+        return res;
+      }
+
       Object.assign(res, post._doc);
 
       await Comment.find({ post_id : id })

@@ -6,6 +6,11 @@ const subscribe = async data => {
 
   data = JSON.parse(data);
 
+  if (data.follower.length == 0 || data.followed.length == 0) {
+    log('Invalid input data', 'err:subscribe');
+    return feedback;
+  }
+
   await relSubscriptions.findOne( data )
     .then(subsc => {
         if (!!subsc) {

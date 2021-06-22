@@ -53,7 +53,8 @@ const initDI = async filePath => {
             const f = script.runInNewContext(sandbox, { timeout: EXECUTION_TIMEOUT });
             f(api);
             res = sandbox.module.exports;
-            console.log(await res.registerUser('{"login":"test03","password":"test02","nameSurname":"Name Surname v2"}'));      
+            console.log(res);
+            //console.log(await res.registerUser('{"login":"test03","password":"test02","nameSurname":"Name Surname v2"}'));      
         } catch (e) {
             log(e.message,'err:di');
             process.exit(1);

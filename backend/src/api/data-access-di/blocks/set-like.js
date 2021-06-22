@@ -1,4 +1,4 @@
-'use strict';
+'use strict'; 
 
 const setLike = async data => {
     let feedback = false;

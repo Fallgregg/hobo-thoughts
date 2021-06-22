@@ -5,6 +5,11 @@ const addNewPost = async data => {
 
     data = JSON.parse(data);
 
+    if (data.content == "" || data.title == "") {
+        log('Invalig input data', "err:posting" );
+        return feedback;
+    }
+
     await Post.create({
         author: data.author,
         title: data.title,

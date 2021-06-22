@@ -1,4 +1,4 @@
-'use strict';
+'use strict'; 
 
 const deleteComment = async id => {
     let feedback = false;
