@@ -10,7 +10,6 @@ const cors = require('koa-cors');
 const HttpStatus = require("http-status");
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-const { log } = require('./utils/utils');
 
 require('./main-modules/db-connect')(process.env.MONGOSERV || 'mongodb://localhost/hobo-thoughts');	//connect to MongoDB
 

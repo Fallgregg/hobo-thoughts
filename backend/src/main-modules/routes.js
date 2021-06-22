@@ -4,6 +4,8 @@ const Router = require('koa-router');
 const HttpStatus = require('http-status');
 
 const api = require('../api/api');
+//const api = require('../api/di')('../backend/src/api/');
+//console.log(api);
 
 const initRoutes = (app) => {
   const router = new Router();
@@ -26,38 +28,30 @@ const initRoutes = (app) => {
     await next();
   });
 
-  router.get('/log-in', async (ctx, next) => {
+  router.get('/subscribtions/:id', async (ctx, next) => { //show persons subscriptions
     ctx.status = HttpStatus.OK;
-    ctx.body = '';
+    ctx.body = await api.showSubscriptions( ctx.params.id );
     await next();
   });
 
-  router.get('/log-in/:l/:p', async (ctx, next) => {  //authorize
+  //{"login":"dimas7001","password":"dimas"}
+  router.get('/log-in/:data', async (ctx, next) => {  //authorize
     ctx.status = HttpStatus.OK;
-    ctx.body = await api.authorize(
-      ctx.params.l,
-      ctx.params.p
-    );
+    ctx.body = await api.authorize( ctx.params.data );
     await next();
   });
 
-  router.get('/sign-up/:l/:p/:nameSurname', async (ctx, next) => {  //add profile to database
+  //{"login":"test01","password":"test01","nameSurname":"Name Surname"}
+  router.get('/sign-up/:data', async (ctx, next) => {  //add profile to database
     ctx.status = HttpStatus.OK;
-    ctx.body = await api.registerUser(
-      ctx.params.l,
-      ctx.params.p,
-      ctx.params.nameSurname
-    );
+    ctx.body = await api.registerUser( ctx.params.data );
     await next();
   });
 
-  router.get('/add-comment/:author/:post_id/:content', async (ctx, next) => { //create new comment
+  //{"author":"_lil.pri_","post_id":"609c564badf874d10da2c2d3","content":"Mrigal, spiny-back, wallago Arctic"}
+  router.get('/add-comment/:data', async (ctx, next) => { //create new comment
     ctx.status = HttpStatus.OK;
-    ctx.body = await api.addNewComment(
-      ctx.params.author,
-      ctx.params.post_id,
-      ctx.params.content,
-    );
+    ctx.body = await api.addNewComment( ctx.params.data );
     await next();
   });
 
@@ -67,19 +61,23 @@ const initRoutes = (app) => {
     await next();
   });
 
-  router.get('/set-like/:author/:post_id/:mark', async (ctx, next) => { //set a new like/dislike
+  //{"author":"_lil.pri_","post_id":"609c564badf874d10da2c2d3","value":"true"}
+  router.get('/set-like/:data', async (ctx, next) => { //set a new like/dislike
     ctx.status = HttpStatus.OK;
-    ctx.body = await api.setLike(
-      ctx.params.author,
-      ctx.params.post_id,
-      ctx.params.mark,
-    );
+    ctx.body = await api.setLike( ctx.params.data );
     await next();
   });
 
-  router.get('/settings', async (ctx, next) => {
+  router.get('/settings/:login', async (ctx, next) => { //show settings
     ctx.status = HttpStatus.OK;
-    ctx.body = '';
+    ctx.body = await api.showSettings( ctx.params.login );
+    await next();
+  });
+
+  //{"login":"test","name_surname":"test test","avatar":"src/avatar","password":"testpass"}
+  router.get('/update-settings/:newsettings', async (ctx, next) => { //change settings
+    ctx.status = HttpStatus.OK;
+    ctx.body = await api.updateSettings( ctx.params.newsettings );
     await next();
   });
 
@@ -89,14 +87,24 @@ const initRoutes = (app) => {
     await next();
   });
 
-  router.get('/post/add-post/:author/:title/:content/:tags', async (ctx, next) => { //create new post
+  //{"author":"test01","title":"Tuna Ipsum","content":"Spookfish zebra oto pilchard porcupinefish worm eel.","tags":["tuna","ipsum","dolor"]}
+  router.get('/post/add-post/:data', async (ctx, next) => { //create new post
     ctx.status = HttpStatus.OK;
-    ctx.body = await api.addNewPost(
-      ctx.params.author,
-      ctx.params.title,
-      ctx.params.content,
-      ctx.query.tags,
-    );
+    ctx.body = await api.addNewPost( ctx.params.data );
+    await next();
+  });
+
+  //{"follower":"test01","followed":"Fallgregg"}
+  router.get('/subscribe/:data', async (ctx, next) => { //handle subscription
+    ctx.status = HttpStatus.OK;
+    ctx.body = await api.subscribe( ctx.params.data );
+    await next();
+  });
+
+  //{"follower":"test01","followed":"Fallgregg"}
+  router.get('/unsubscribe/:data', async (ctx, next) => { //handle unsubscription
+    ctx.status = HttpStatus.OK;
+    ctx.body = await api.unsubscribe( ctx.params.data );
     await next();
   });
 

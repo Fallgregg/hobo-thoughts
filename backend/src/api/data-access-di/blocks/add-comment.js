@@ -1,7 +1,4 @@
-'use strict'; 
-
-const Comment = require('../models/db-models').comment;	//import Comment mongo model
-const { log } = require('../../../utils/utils'); //logger import
+'use strict';
 
 const addNewComment = async data => {
     let feedback = false;

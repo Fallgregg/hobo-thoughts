@@ -1,8 +1,5 @@
 'use strict'; 
 
-const Post = require('../models/db-models').post;	//import Post mongoose model
-const { log } = require('../../../utils/utils'); //logger import
-
 const addNewPost = async data => {
     let feedback = false;
 

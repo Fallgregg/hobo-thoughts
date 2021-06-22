@@ -2,9 +2,6 @@
 
 const bcrypt = require('bcrypt');
 
-const User = require('../models/db-models').user;	//import User mongoose model
-const { log } = require('../../../utils/utils'); //logger import
-
 const checkData = async data => {
   let res;
 

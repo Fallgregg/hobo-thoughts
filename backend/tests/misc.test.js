@@ -3,7 +3,7 @@ const time = require('./time');
 const sinon = require('sinon');
 sinon.stub(time, 'setTimeout');
 
-const addNewPost = require('./add-post');
+const api = require('../src/api/api');
 
 test('add-post test #1', async () => {
   expect(await addNewPost(

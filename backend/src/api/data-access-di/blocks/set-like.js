@@ -1,7 +1,4 @@
-'use strict'; 
-
-const Like = require('../models/db-models').like;	//import Like mongo model
-const { log } = require('../../../utils/utils'); //logger import
+'use strict';
 
 const setLike = async data => {
     let feedback = false;
