@@ -1,9 +1,9 @@
 'use strict';
 
-const User = require('../models/db-models').user;	//import User mongoose model
-const Post = require('../models/db-models').post;	//import Post mongoose model
+const User = require('../models/db-models').user;	//import User mongo model
+const Post = require('../models/db-models').post;	//import Post mongo model
 
-//crop text function import
+//crop text function & logger import
 const { cropTextTo, log } = require('../../../utils/utils');
 
 const getPosts = async (tags) => {

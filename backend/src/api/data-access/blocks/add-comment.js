@@ -8,6 +8,8 @@ const addNewComment = async data => {
 
     data = JSON.parse(data);
 
+    if (!data.content.length) return feedback;
+
     await Comment.create({
         author: data.author,
         content: data.content,
